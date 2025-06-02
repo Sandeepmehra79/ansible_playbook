@@ -9,7 +9,6 @@
         comment: "User with sudo (root) access"
         shell: /bin/bash
         create_home: yes
-        password: "$6$o89be8W3gRs9YEDa$ZuDc.YGRWacOxzMkp3BMTT.IhU/vfeZ5xU3IcSeTlXdCRZ0gXCxLzkGjYHNwlbB95XMqszO/AgxvYIoHWCZCh1"
 
     - name: Configure passwordless sudo for the user
       ansible.builtin.copy:
