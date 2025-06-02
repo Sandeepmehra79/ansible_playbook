@@ -1,6 +1,6 @@
 ---
 - name: Create user with sudo privileges on localhost
-  hosts: localhost
+  hosts: all
   become: yes
   tasks:
     - name: Create the new user account with a password
