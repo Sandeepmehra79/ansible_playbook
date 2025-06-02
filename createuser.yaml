@@ -8,6 +8,7 @@
         name: ansible_user
         comment: "User with sudo (root) access"
         shell: /bin/bash
+        password: "$2b$10$MZxPwd3sPvxwmWBAt.j9LO3emIED94TU1iz2gSMd.6pbkjGwifuH2"
         create_home: yes
 
     - name: Configure passwordless sudo for the user
