@@ -11,10 +11,10 @@
         create_home: yes
 
     - name: Add ansible_user to the wheel group
-      ansible.builtin.group:
-        name: wheel
-        members: ansible_user
-        append: yes
+      ansible.builtin.user:
+      name: ansible_user
+      groups: wheel
+      append: yes
 
     - name: Ensure authorized_keys file exists for ansible_user
       ansible.builtin.file:
