@@ -8,6 +8,7 @@
         name: ansible_user
         comment: "User with sudo (root) access"
         shell: /bin/bash
+        password: "$6$o89be8W3gRs9YEDa$ZuDc.YGRWacOxzMkp3BMTT.IhU/vfeZ5xU3IcSeTlXdCRZ0gXCxLzkGjYHNwlbB95XMqszO/AgxvYIoHWCZCh1"
         create_home: yes
 
     - name: Add ansible_user to the wheel group
@@ -16,17 +17,3 @@
         groups: wheel
         append: yes
 
-    - name: Ensure authorized_keys file exists for ansible_user
-      ansible.builtin.file:
-        path: /home/ansible_user/.ssh/authorized_keys
-        state: touch
-        owner: ansible_user
-        group: ansible_user
-        mode: '0600'
-
-    - name: Add satelliet server public key to authorized_keys using lineinfile
-      ansible.builtin.lineinfile:
-        path: /home/ansible_user/.ssh/authorized_keys
-        create: yes                  # Creates the file if it doesn't exist
-        line: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCweWrM6KdWaRPEJERRhJZrafYo8jKGn7d2XjIOTRzMqQgg5mPpIZwyRqVWcZAr09NfMx/e9r0wcoy8c6A/kU/y3V3Pd0ZSQEtYkwapEs6b5sF2dNI1s8gyXMks8mdsy3xQeG6uFCttNGoZSUlRZ38ev5SYSRIbPeudngUKi+Ym3ZkKM//ilCVtHbzD8g7k0B1vnwhzOEQSH7ofZe8xcmtDPZb6uHgoJHXdVeu+wMGwsyM4DSN7COTNYec8Vf7lnoSjKOYTymdAI+FFuBaDzGTU01vI4dW1WAOHkco6XI34Zku6e4IBelU5h7PUl/7BjmM9mPU+ThvEJHW/P4nWrAYAz0r7QBWu0rKRUUgn0lHFUssK01xFOB3H8p6btLlqZDEDr3h37trjL9GW5SGIZWE1/SAIOOPAFaOR8XGuVgtAUylfQUEQahtIp2Qa0o9U83BaSFELLB/dX1SJimsxvgCqfESY/TPQqMuRqFouHQ/fpwXPCB6K1n9rij7iY/5orBs="
-        state: present
