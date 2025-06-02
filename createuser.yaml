@@ -1,0 +1,20 @@
+---
+- name: Create user with sudo privileges on localhost
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Create the new user account with a password
+      ansible.builtin.user:
+        name: ansible_user
+        comment: "User with sudo (root) access"
+        shell: /bin/bash
+        create_home: yes
+        password: "$6$rounds=656000$YourSaltHere$YourHashedPasswordHere"
+
+    - name: Configure passwordless sudo for the user
+      ansible.builtin.copy:
+        dest: /etc/sudoers.d/ansibleuser
+        content: "ansibleuser ALL=(ALL) NOPASSWD:ALL\n"
+        owner: root
+        group: root
+        mode: '0440'
