@@ -10,6 +10,14 @@
         shell: /bin/bash
         create_home: yes
 
+    - name: Create the sudoers file for ansible_user if it doesn't exist
+      ansible.builtin.file:
+        path: /etc/sudoers.d/ansibleuser
+        state: touch
+        owner: root
+        group: root
+        mode: '0440'
+
     - name: Configure passwordless sudo for the user
       ansible.builtin.copy:
         dest: /etc/sudoers.d/ansibleuser
