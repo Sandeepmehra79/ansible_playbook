@@ -15,4 +15,17 @@
         name: ansible_user
         groups: wheel
         append: yes
+        
+    - name: Retrieve user list from system using getent
+      command: getent passwd
+      register: passwd_info
+
+    - name: Extract usernames from getent output
+      set_fact:
+        user_list: "{{ passwd_info.stdout_lines | map('split', ':') | map('first') | list }}"
+
+    - name: Print each username
+      debug:
+        msg: "User: {{ item }}"
+      loop: "{{ user_list }}"
 
