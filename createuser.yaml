@@ -9,7 +9,6 @@
         comment: "User with sudo (root) access"
         shell: /bin/bash
         password: "$6$o89be8W3gRs9YEDa$ZuDc.YGRWacOxzMkp3BMTT.IhU/vfeZ5xU3IcSeTlXdCRZ0gXCxLzkGjYHNwlbB95XMqszO/AgxvYIoHWCZCh1"
-        create_home: yes
 
     - name: Add ansible_user to the wheel group
       ansible.builtin.user:
